@@ -8,7 +8,7 @@
 
 // 1.) Understanding the problem
 // how to compute the max and min temp?
-// what's a senseo error? and what to do?
+// what's a senser error? and what to do?
 
 
 // 2.) Breaking up into sub-problems
@@ -57,14 +57,13 @@ const calcTemAmplitude = function (temps) {
 const calcTemAmplitudeTwoArrays = function (t1, t2) {
 
     const temps = t1.concat(t2)
-    console.log(temps)
 
     let max = temps[0];
     let min = temps[0];
 
     for (let i = 0; i < temps.length; i++) {
         const curTemp = temps[i]
-        if (typeof curTemp !== 'number') continue;
+        if (typeof curTemp !== "number") continue;
 
         if (curTemp > max) {
             max = curTemp;
@@ -84,6 +83,4 @@ const calcTemAmplitudeTwoArrays = function (t1, t2) {
     Lowest temperature: ${min}°C
     Temperature amplitude: ${tempAmp}°C.`)
 };
-
-
-calcTemAmplitudeTwoArrays(temps, temps1)
+calcTemAmplitudeTwoArrays("array", temps, temps1)
