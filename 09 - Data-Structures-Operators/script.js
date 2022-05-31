@@ -154,3 +154,4 @@ console.log(entries);
 for(const [key, {open, close}] of entries){
   console.log(`On ${key} we open at ${open}h and close ${close}h.`);
 }
+
