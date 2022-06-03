@@ -85,13 +85,13 @@ for (const [goalIndex, goalPlayer] of game.scored.entries()) {
 const odds = Object.values(game.odds)
 let averageOdds = 0;
 for (const odd of odds) {
-    averageOdds += odd    
+    averageOdds += odd
 }
 averageOdds /= odds.length
-console.log(averageOdds) 
+console.log(averageOdds)
 
 //3.
-for(const [team, odd] of Object.entries(game.odds)){
+for (const [team, odd] of Object.entries(game.odds)) {
     const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`
     console.log(`Odd of ${teamStr}: ${odd}`)
 }
@@ -102,7 +102,47 @@ for(const [team, odd] of Object.entries(game.odds)){
 //   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 // }
 const scorers = {};
-for(const player of game.scored){
+for (const player of game.scored) {
     scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 }
 console.log(scorers);
+
+// Coding Challenge #3
+
+const gameEvents = new Map([
+    [17, '⚽ GOAL'],
+    [36, '🔄 Substitution'],
+    [47, '⚽ GOAL'],
+    [61, '🔄 Substitution'],
+    [64, '🟨 Yellow card'],
+    [69, '🟥 Red card'],
+    [70, '🔄 Substitution'],
+    [72, '🔄 Substitution'],
+    [76, '⚽ GOAL'],
+    [80, '⚽ GOAL'],
+    [92, '🟨 Yellow card'],
+]);
+
+console.log('original: ', gameEvents);
+
+// 1.
+const events = [...new Set(gameEvents.values())]
+console.log('eventos unicos: ', events);
+
+// 2.
+gameEvents.delete(64)
+console.log('cartão amarelo(64") anulado', gameEvents);
+
+// 3.
+const durationTime = [...gameEvents.keys()].pop()
+const frequencyEvent = durationTime / gameEvents.size;
+let strFrequency = `The game lasted ${durationTime} minutes. An event happened, on average, every ${frequencyEvent} minutes`;
+
+console.log('media de eventos/minuto: ', strFrequency);
+
+// 4.
+for (const [min, event] of gameEvents) {
+    const firstOrSecond = min > 45 ? '[SECOND HALF]' : '[FIRST HALF]'
+    const str = `${firstOrSecond} ${min}": ${event}`
+    console.log(str);
+}

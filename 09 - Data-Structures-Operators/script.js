@@ -137,7 +137,7 @@ const properties = Object.keys(openingHours)
 console.log('properties: ', properties);
 
 let openStr = `We are open on ${properties.length} days:`
-for (const day of properties){
+for (const day of properties) {
   openStr += `${day}, `
 }
 
@@ -151,7 +151,98 @@ console.log(values);
 const entries = Object.entries(openingHours)
 console.log(entries);
 
-for(const [key, {open, close}] of entries){
+for (const [key, {
+    open,
+    close
+  }] of entries) {
   console.log(`On ${key} we open at ${open}h and close ${close}h.`);
 }
 
+console.log('*~*~*~*~*~*~ Working with strings #1 *~*~*~*~*~');
+
+const airline = 'GOL Linhas aéreas'
+const plane = 'A320'
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log('airplane' [2]);
+
+console.log(airline.length);
+console.log('plane'.length);
+
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('a'));
+console.log(airline.indexOf('Linhas'));
+
+console.log(airline.slice(4));
+const newString = airline.slice(4, 10)
+console.log('newString: ', newString);
+
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+console.log('=======practicing=======');
+const checkMiddleSeat = seat => {
+  // B and E are middle seats
+  const lastLetter = seat.slice(-1)
+  const checkMiddle = lastLetter === 'B' || lastLetter === 'E' ? 'Middle seat 😔' : 'Not a middle seat 😎'
+  console.log(seat, checkMiddle)
+}
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+console.log('*~*~*~*~*~*~ Working with strings #2 *~*~*~*~*~');
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// fix capitalization in name
+
+const passenger = 'jOnAS'
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1)
+console.log(passengerCorrect);
+
+const loginEmail = ' Hello@Jonas.IO  \n '
+const normalizedEmail = loginEmail.toLowerCase().trim()
+console.log('email: ', loginEmail);
+console.log('email normalizado: ', normalizedEmail);
+
+//replacing
+const priceBRL = 'R$288,97'
+const priceUS = priceBRL.replace('R', 'U').replace(',', '.')
+console.log(priceUS);
+
+const announcment = "All passengers come to boarding door 23. Boarding door 23!"
+
+console.log(announcment.replaceAll('door', 'gate'));
+console.log(announcment.replace(/door/g, 'gate'));
+
+// Booleans
+
+
+console.log('------.includes-----');
+const aviao = 'Airbus A320neo'
+console.log('inclui A320?', aviao.includes('A320'));
+console.log('inclui Boeing?', aviao.includes('Boeing'));
+
+console.log('------.startsWith-----');
+console.log('comeca com Airb?', aviao.startsWith('Airb'));
+console.log('comeca com A3?', aviao.startsWith('A3'));
+
+if(aviao.startsWith('Airbus') && aviao.endsWith('neo')) {
+  console.log('Part of the NEW Airbus family 🛫');
+}
+
+const checkBaggage = items => {
+  const baggage = items.toLowerCase()
+  baggage.includes('knife') || baggage.includes('gun') ? console.log('You are not allowed on board! 🤚🏾') : console.log('Welcome aboard! 👌🏾'); 
+}
+
+checkBaggage('I have a laptop, some Food and a pocket Knife')
+checkBaggage('Socks and camera')
+checkBaggage('Got some snacks and a gun for protection')
