@@ -133,3 +133,84 @@ class StudentCl extends PersonCl {
 const martha = new StudentCl('Martha Jones', 2002, 'Computer Science');
 console.log(martha);
 martha.introduce();
+
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - birthYear);
+  },
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(PersonProto);
+
+const StudentProto = Object.create(PersonProto);
+StudentProto.init = function (firstName, birthYear, course) {
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+const jay = Object.create(StudentProto);
+jay.init('Jay', 2000, 'Arts');
+// // jay.introduce();
+// jay.calcAge();
+
+// 1) public fields
+// 2) private fields
+// 3) private methods
+// 4) public methods
+
+class Account {
+  // 1) public fields (instances)
+  locale = navigator.language;
+
+  // 2) private fields (instances)
+  #movements = [];
+  #pin;
+
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    // protected property
+    this.#pin = pin;
+    // this._movements = [];
+    // this.locale = navigator.language;
+
+    console.log(`Thanks for opening an account, ${owner}.`);
+  }
+
+  // 3) Public Methods
+  getMovements() {
+    return this.#movements;
+  }
+
+  deposit(value) {
+    this.#movements.push(value);
+  }
+  withdraw(value) {
+    this.deposit(-value);
+  }
+
+  
+
+  requestLoan(value) {
+    if (this.#approveLoan(value)) {
+      this.deposit(value);
+      console.log(`Loan approved`);
+    }
+  }
+  // 4) Private methods
+  #approveLoan(value) {
+    return true;
+  }
+}
+
+const acc1 = new Account('Jonas', 'EUR', 1111, []);
+
+acc1.deposit(250);
+acc1.withdraw(140);
+acc1.requestLoan(1000);
+console.log(acc1.getMovements());
+console.log(acc1);
+
